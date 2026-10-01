@@ -1,56 +1,70 @@
 import { memo } from "react";
 import { Heart, ShoppingBag } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addToWishlist, removeFromWishlist } from "@/features/wishlist/wishlistSlice";
+import { addToCart } from "@/features/cart/cartSlice";
+import { formatPrice } from "@/lib/formatPrice";
 
 function ProductCard({ product }) {
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { items } = useSelector((state) => state.wishlist);
 
-  const handleWishlist = (e) => {
-    e.stopPropagation();
-    // dispatch wishlist action here
+  const wishlisted = items.some((item) => item.id === product.id);
+  const href = `/products/${product.id}`;
+
+  const handleWishlist = () => {
+    dispatch(wishlisted ? removeFromWishlist(product.id) : addToWishlist(product));
   };
 
-  const handleAddToBag = (e) => {
-    e.stopPropagation();
-    // dispatch add-to-cart action here
+  const handleAddToBag = () => {
+    dispatch(addToCart(product));
   };
 
   return (
-    <div
-      className="group m-1 cursor-pointer border-3"
-      onClick={() => navigate(`/products/${product.id}`)}
-    >
-      <div className="relative aspect-square overflow-hidden bg-gray-100">
-        <img
-          src={product.image}
-          alt={`${product.brand} ${product.name}`}
-          width="400"
-          height="400"
-          className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-        />
+    <article className="group relative">
+      <div className="relative aspect-square overflow-hidden rounded-2xl bg-neutral-100">
+        <Link to={href} className="block h-full w-full" aria-label={`View ${product.name}`}>
+          <img
+            src={product.image}
+            alt={`${product.brand} ${product.name}`}
+            width="400"
+            height="400"
+            loading="lazy"
+            className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+          />
+        </Link>
+
         <button
           type="button"
           onClick={handleWishlist}
-          className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-white transition duration-300 hover:scale-110"
+          aria-label={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
+          aria-pressed={wishlisted}
+          className="absolute right-3 top-3 grid size-10 place-items-center rounded-full bg-white/90 shadow-sm backdrop-blur transition hover:scale-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
         >
-          <Heart size={19} strokeWidth={1.5} />
+          <Heart
+            size={19}
+            strokeWidth={1.5}
+            className={wishlisted ? "fill-red-500 text-red-500" : "text-black"}
+          />
         </button>
+
         <button
           type="button"
           onClick={handleAddToBag}
-          className="absolute bottom-4 left-4 right-4 flex items-center justify-center gap-2 bg-black py-3 text-sm font-medium text-white opacity-0 transition group-hover:opacity-100"
+          className="absolute inset-x-3 bottom-3 flex items-center justify-center gap-2 rounded-xl bg-black py-3 text-sm font-medium text-white transition hover:bg-neutral-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white lg:translate-y-2 lg:opacity-0 lg:group-focus-within:translate-y-0 lg:group-focus-within:opacity-100 lg:group-hover:translate-y-0 lg:group-hover:opacity-100"
         >
           <ShoppingBag size={17} />
-          Add to Bag
+          Add to bag
         </button>
       </div>
 
-      <div className="mt-4">
-        <p className="text-sm text-gray-500">{product.brand}</p>
-        <h2 className="mt-1 font-medium">{product.name}</h2>
-        <p className="mt-2 font-semibold">₹{product.price}</p>
-      </div>
-    </div>
+      <Link to={href} className="mt-4 block">
+        <p className="text-sm text-neutral-500">{product.brand}</p>
+        <h2 className="mt-1 line-clamp-1 font-medium">{product.name}</h2>
+        <p className="mt-2 text-lg font-semibold">{formatPrice(product.price)}</p>
+      </Link>
+    </article>
   );
 }
 

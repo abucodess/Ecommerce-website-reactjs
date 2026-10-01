@@ -7,12 +7,14 @@ const FeaturedProducts = lazy(
 );
 const ShopByBrand = lazy(() => import("../components/product/ShopByBrand"));
 const NewArrival = lazy(() => import("../components/product/NewArrival"));
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchproducts } from "../features/products/productSlice";
 import Loader from "../components/common/Loader";
+const MIN_LOADER_MS = 1500;
 export default function Home() {
   let dispatch = useDispatch();
+    const [minTimePassed, setMinTimePassed] = useState(false);
   async function load() {
     try {
       let res = await dispatch(fetchproducts()).unwrap();
@@ -23,20 +25,22 @@ export default function Home() {
   }
   useEffect(() => {
     load();
+     const timer = setTimeout(() => setMinTimePassed(true), MIN_LOADER_MS);
+    return () => clearTimeout(timer);
   }, [dispatch]);
   let { products, isloading, error } = useSelector((state) => state.products);
 
-  if (isloading) {
-    return <h1>loadinggggg</h1>;
+  if (isloading ||! minTimePassed) {
+    return (<Loader/>);
   }
   if (error) {
     return <div>Something went wrong: {error}</div>;
   }
   return (
-    <div>
+    <div className="bg-black text-white">
       <Navbar />
       <HeroCarousel />
-      <Suspense fallback={<h1>loaddingg</h1>}>
+      <Suspense fallback={<Loader/>}>
         <FeaturedProducts />
         <ShopByBrand />
         <NewArrival />

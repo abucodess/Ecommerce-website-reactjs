@@ -3,7 +3,7 @@ import LOGO from "../../assets/images/LOGO.svg";
 
 export default function Footer() {
   return (
-    <footer className="border-t-2 border-black mt-3 px-6 py-10">
+    <footer className="border-t-2 border-black mt-3 px-6 py-10 bg-black text-white">
 
       {/* Logo */}
       <div className="flex flex-col items-center">
@@ -13,7 +13,7 @@ export default function Footer() {
           className="h-20 w-auto"
         />
 
-        <h1 className="mt-3 text-sm text-gray-600">
+        <h1 className="mt-3 text-sm text-gray-300">
           Premium footwear. Built for every step.
         </h1>
       </div>

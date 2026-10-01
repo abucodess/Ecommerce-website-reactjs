@@ -7,13 +7,14 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store, { persistor } from "./app/store.js";
 import { PersistGate } from "redux-persist/integration/react";
+
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
       <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
-        <PersistGate loading={null} persistor={persistor}>
+        <PersistGate persistor={persistor}>
           <BrowserRouter>
             <App />
           </BrowserRouter>

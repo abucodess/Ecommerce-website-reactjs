@@ -12,25 +12,24 @@ import ProtectedRoute from "./pages/Unauthorized";
 import Wishlist from "./pages/Wishlist";
 import Checkout from "./pages/Checkout";
 import Orders from "./pages/Orders";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
-
 function App() {
 
   return (
-    
+    <>
+          
       <Routes>
 
-        {/* Public Routes */}
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route path="/products/:id" element={<ProductDetails />} />
 
-        {/* Auth Routes */}
         <Route path="/sign-in" element={<Login />} />
         <Route path="/sign-up" element={<Signup />} />
 
-        {/* Protected Routes */}
         <Route element={<ProtectedRoute />}>
           <Route path="/cart" element={<Cart />} />
           <Route path="/wishlist" element={<Wishlist />} />
@@ -39,10 +38,20 @@ function App() {
           <Route path="/profile" element={<Profile />} />
         </Route>
 
-        {/* 404 */}
         <Route path="*" element={<NotFound />} />
 
       </Routes>
+       <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        pauseOnHover
+        theme="light"
+      />
+      </>
+      
     
   );
 }

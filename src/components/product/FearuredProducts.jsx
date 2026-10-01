@@ -11,7 +11,7 @@ export default function FeaturedProducts() {
   }
 
   return (
-    <section className="px-6 py-20 md:px-10 lg:px-16">
+    <section className="px-6 py-20 md:px-10 lg:px-16 bg-black text-white">
 
       <div className="mb-10 flex items-end justify-between">
         <div>

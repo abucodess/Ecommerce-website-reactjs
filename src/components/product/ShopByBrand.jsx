@@ -12,7 +12,7 @@ export default function ShopByBrand() {
     let brands = products.slice(0,3)
 
   return (
-    <section className="px-6 py-20 md:px-10 lg:px-16">
+    <section className="px-6 py-20 md:px-10 lg:px-16 bg-black text-white">
       
       <div className="mb-10">
         <p className="mb-2 text-sm uppercase tracking-[0.2em] text-gray-500">

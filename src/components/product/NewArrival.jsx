@@ -1,32 +1,27 @@
-
 import { ArrowRight } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import ProductCard from "./ProductCard";
 import Loader from "../common/Loader";
 import { useSelector } from "react-redux";
 
-
-
 export default function NewArrivals() {
-          let {products ,isloading,error} = useSelector(state=>state.products)
+  let { products, isloading, error } = useSelector((state) => state.products);
 
-  const newArrivals = products.slice(0,6);
-  if(isloading){
-    return <Loader/>
+  const newArrivals = products.slice(0, 6);
+  if (isloading) {
+    return <Loader />;
   }
-  if(error){
-    return <h1>something is wrong : {error}</h1>
+  if (error) {
+    return <h1>something is wrong : {error}</h1>;
   }
   return (
-    <section className="px-6 py-20 md:px-10 lg:px-16">
+    <section className="px-6 py-20 md:px-10 lg:px-16 bg-black text-white">
       <div className="mb-10 flex items-end justify-between">
         <div>
           <p className="mb-2 text-sm uppercase tracking-[0.2em] text-gray-500">
             Just In
           </p>
-          <h2 className="text-4xl font-bold md:text-5xl">
-            New Arrivals
-          </h2>
+          <h2 className="text-4xl font-bold md:text-5xl">New Arrivals</h2>
         </div>
         <NavLink
           to="/products"
@@ -36,7 +31,7 @@ export default function NewArrivals() {
           <ArrowRight size={16} />
         </NavLink>
       </div>
-      <div className="flex gap-5 overflow-x-auto pb-5 scrollbar-hide">
+      <div className="flex gap-5 overflow-x-auto pb-5 scrollbar-none [&::-webkit-scrollbar]:hidden">
         {newArrivals.map((product) => (
           <div
             key={product.id}
@@ -58,4 +53,3 @@ export default function NewArrivals() {
     </section>
   );
 }
-
