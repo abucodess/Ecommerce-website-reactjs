@@ -1,0 +1,206 @@
+/* Premium Black & White Luxury Toast Notifications */
+
+/* Main Container Positioning & Responsiveness */
+.Toastify__toast-container {
+  z-index: 999999 !important;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+/* Desktop & Tablet (viewport >= 641px) */
+@media (min-width: 641px) {
+  .Toastify__toast-container--top-right,
+  .Toastify__toast-container {
+    top: 24px !important;
+    right: 24px !important;
+    width: 380px !important;
+    max-width: calc(100vw - 48px) !important;
+    padding: 0 !important;
+  }
+}
+
+/* Mobile Devices (viewport <= 640px) */
+@media (max-width: 640px) {
+  .Toastify__toast-container--top-right,
+  .Toastify__toast-container--top-center,
+  .Toastify__toast-container {
+    top: 16px !important;
+    left: 16px !important;
+    right: 16px !important;
+    width: auto !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+}
+
+/* Individual Toast Card - Sleek Black Background & Glassmorphic Elevation */
+.Toastify__toast {
+  pointer-events: auto;
+  position: relative;
+  min-height: 56px !important;
+  box-sizing: border-box;
+  margin-bottom: 12px !important;
+  padding: 13px 16px !important;
+  border-radius: 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between;
+  overflow: hidden !important;
+  cursor: pointer;
+  user-select: none;
+  font-family: inherit !important;
+
+  /* Rich Obsidian Black with Glass Sheen */
+  background: #09090b !important;
+  background: rgba(10, 10, 12, 0.96) !important;
+  backdrop-filter: blur(24px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(200%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  box-shadow: 
+    0 20px 48px -10px rgba(0, 0, 0, 0.75),
+    0 8px 20px -4px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
+
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.Toastify__toast:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.24) !important;
+  box-shadow: 
+    0 24px 54px -10px rgba(0, 0, 0, 0.85),
+    0 10px 24px -4px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+}
+
+.Toastify__toast:active {
+  transform: scale(0.98);
+}
+
+/* Toast Body & White Typography */
+.Toastify__toast-body {
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  flex: 1 1 auto;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  line-height: 1.45 !important;
+  color: #ffffff !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* Icon Container with Subtle Glow Badge */
+.Toastify__toast-icon {
+  width: 30px !important;
+  height: 30px !important;
+  min-width: 30px !important;
+  border-radius: 9999px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-inline-end: 12px !important;
+  flex-shrink: 0 !important;
+}
+
+.Toastify__toast-icon svg {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+/* Success Badge & Icon (Emerald on Black) */
+.Toastify__toast--success .Toastify__toast-icon {
+  background: rgba(16, 185, 129, 0.16) !important;
+  border: 1px solid rgba(16, 185, 129, 0.28) !important;
+}
+.Toastify__toast--success .Toastify__toast-icon svg {
+  fill: #34d399 !important;
+  color: #34d399 !important;
+}
+
+/* Error Badge & Icon (Rose on Black) */
+.Toastify__toast--error .Toastify__toast-icon {
+  background: rgba(239, 68, 68, 0.16) !important;
+  border: 1px solid rgba(239, 68, 68, 0.28) !important;
+}
+.Toastify__toast--error .Toastify__toast-icon svg {
+  fill: #f87171 !important;
+  color: #f87171 !important;
+}
+
+/* Warning Badge & Icon (Amber on Black) */
+.Toastify__toast--warning .Toastify__toast-icon {
+  background: rgba(245, 158, 11, 0.16) !important;
+  border: 1px solid rgba(245, 158, 11, 0.28) !important;
+}
+.Toastify__toast--warning .Toastify__toast-icon svg {
+  fill: #fbbf24 !important;
+  color: #fbbf24 !important;
+}
+
+/* Info / Default Badge & Icon (Pure White on Black) */
+.Toastify__toast--info .Toastify__toast-icon,
+.Toastify__toast--default .Toastify__toast-icon {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+.Toastify__toast--info .Toastify__toast-icon svg,
+.Toastify__toast--default .Toastify__toast-icon svg {
+  fill: #ffffff !important;
+  color: #ffffff !important;
+}
+
+/* Close Button */
+.Toastify__close-button {
+  color: #a1a1aa !important;
+  opacity: 0.6 !important;
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px !important;
+  border-radius: 9999px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  margin-left: 8px !important;
+  align-self: center !important;
+  transition: all 0.2s ease !important;
+}
+
+.Toastify__close-button:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+  opacity: 1 !important;
+  transform: scale(1.08) !important;
+}
+
+/* Progress Bar */
+.Toastify__progress-bar {
+  height: 2.5px !important;
+  border-radius: 9999px !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  opacity: 0.8 !important;
+}
+
+.Toastify__progress-bar--success {
+  background: linear-gradient(90deg, #059669, #34d399) !important;
+}
+
+.Toastify__progress-bar--error {
+  background: linear-gradient(90deg, #dc2626, #f87171) !important;
+}
+
+.Toastify__progress-bar--warning {
+  background: linear-gradient(90deg, #d97706, #fbbf24) !important;
+}
+
+.Toastify__progress-bar--info,
+.Toastify__progress-bar--default {
+  background: linear-gradient(90deg, #71717a, #ffffff) !important;
+}

@@ -1,10 +1,41 @@
+
 import Navbar from "@/components/layout/Navbar";
 import Emptywishlist from "@/features/wishlist/components/Emptywishlist";
 import WishlistGrid from "@/features/wishlist/components/WishlistGrid";
 import { useSelector } from "react-redux";
 
 export default function Wishlist() {
-  const { items } = useSelector((state) => state.wishlist);
+  const {
+    items: wishlistItems,
+    loading: wishlistLoading,
+  } = useSelector((state) => state.wishlist);
+
+  const {
+    products,
+    isloading: productsLoading,
+  } = useSelector((state) => state.products);
+
+  const wishlistIds = new Set(wishlistItems);
+
+  const wishlistProducts = products.filter((product) =>
+    wishlistIds.has(Number(product.id))
+  );
+
+  const loading = wishlistLoading || productsLoading;
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-white text-neutral-900">
+        <Navbar />
+
+        <main className="flex min-h-screen items-center justify-center">
+          <p className="text-neutral-500">
+            Loading wishlist...
+          </p>
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-white text-neutral-900">
@@ -16,21 +47,23 @@ export default function Wishlist() {
             Wishlist
           </h1>
 
-          {items.length > 0 && (
+          {wishlistProducts.length > 0 && (
             <p className="text-neutral-500">
-              {items.length} {items.length === 1 ? "pair" : "pairs"}
+              {wishlistProducts.length}{" "}
+              {wishlistProducts.length === 1 ? "pair" : "pairs"}
             </p>
           )}
         </div>
 
         <div className="mt-10">
-          {items.length === 0 ? (
+          {wishlistProducts.length === 0 ? (
             <Emptywishlist />
           ) : (
-            <WishlistGrid items={items} />
+            <WishlistGrid items={wishlistProducts} />
           )}
         </div>
       </main>
     </div>
   );
 }
+

@@ -1,11 +1,18 @@
 import { SignIn } from "@clerk/clerk-react";
-
+import { useSearchParams } from "react-router-dom";
 
 function Login() {
-  return  <div className="h-screen w-screen bg-black/50 flex justify-center items-center">
-    <SignIn />
+  const [searchParams] = useSearchParams();
+  const redirectUrl = searchParams.get("redirect_url") || "/";
 
-  </div>;
+  return (
+    <div className="h-screen w-screen bg-black/50 flex justify-center items-center">
+      <SignIn
+        fallbackRedirectUrl={redirectUrl}
+        signUpFallbackRedirectUrl={redirectUrl}
+      />
+    </div>
+  );
 }
 
 export default Login;

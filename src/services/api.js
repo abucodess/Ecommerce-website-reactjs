@@ -1,4 +1,3 @@
-// API client helpers belong here.
 
 import axios from "axios";
 

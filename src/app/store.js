@@ -9,7 +9,7 @@ import productsReducer from "../features/products/productSlice";
 import cartReducer from "@/features/cart/cartSlice";
 import wishlistReducer from "@/features/wishlist/wishlistSlice";
 import checkoutreducer from '@/features/checkout/checkoutSlice'
-
+import orderreducer from '@/features/orders/orderSlice'
 
 const persistConfig = {
   key: "cart",
@@ -26,7 +26,8 @@ const store = configureStore({
     products: persistedproductreducer,
     cart: cartReducer,
     wishlist: wishlistReducer,
-    checkout : checkoutreducer
+    checkout : checkoutreducer,
+    orders : orderreducer
   },
 
   middleware: (getDefaultMiddleware) =>

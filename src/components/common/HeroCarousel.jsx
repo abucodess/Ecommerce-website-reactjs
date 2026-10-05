@@ -8,7 +8,6 @@ function HeroCarousel() {
 
   return (
     <section className="relative h-screen w-full overflow-hidden bg-black">
-      {/* Background video */}
       <video
         src={video}
         autoPlay

@@ -3,18 +3,16 @@ import { useDispatch } from "react-redux";
 import { deleteAddress, selectAddress } from "../checkoutSlice";
 
 
-export default function AddressCard({ address, selected, onEdit }) {
+export default function AddressCard({ address, selected, onEdit }){
+  
   const dispatch = useDispatch();
-
   const select = () => dispatch(selectAddress(address.id));
-
   const handleKeyDown = (e) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       select();
     }
   };
-
   return (
     <div
       role="radio"

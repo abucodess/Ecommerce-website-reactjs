@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import {
-  addAddress,
-  updateAddress,
-} from "../checkoutSlice";
+import { useUser } from "@clerk/clerk-react";
+import { useDispatch, useSelector } from "react-redux";
+
+import { addAddress, updateAddress } from "../checkoutSlice";
 
 const emptyAddress = {
   name: "",
@@ -14,17 +13,24 @@ const emptyAddress = {
   pincode: "",
 };
 
-export default function AddressForm({
-  editingAddress,
-  onCancel,
-}) {
+export default function AddressForm({ editingAddress, onCancel }) {
   const dispatch = useDispatch();
+  const { user } = useUser();
+
+  const loading = useSelector((state) => state.checkout.loading);
 
   const [formData, setFormData] = useState(emptyAddress);
 
   useEffect(() => {
     if (editingAddress) {
-      setFormData(editingAddress);
+      setFormData({
+        name: editingAddress.name || "",
+        phone: editingAddress.phone || "",
+        address: editingAddress.address || "",
+        city: editingAddress.city || "",
+        state: editingAddress.state || "",
+        pincode: editingAddress.pincode || "",
+      });
     } else {
       setFormData(emptyAddress);
     }
@@ -39,152 +45,140 @@ export default function AddressForm({
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (editingAddress) {
-      dispatch(updateAddress(formData));
-    } else {
-      dispatch(addAddress(formData));
-    }
+    if (!user?.id) return;
 
-    onCancel();
+    try {
+      if (editingAddress) {
+        await dispatch(
+          updateAddress({
+            addressId: editingAddress.id,
+            address: formData,
+          }),
+        ).unwrap();
+      } else {
+        await dispatch(
+          addAddress({
+            userId: user.id,
+            address: formData,
+          }),
+        ).unwrap();
+      }
+
+      onCancel();
+    } catch (error) {
+      console.error("Failed to save address:", error);
+    }
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="border rounded-xl p-5 space-y-4"
-    >
-
+    <form onSubmit={handleSubmit} className="space-y-4 rounded-xl border p-5">
+      {" "}
       <h2 className="text-lg font-semibold">
-        {editingAddress
-          ? "Edit Address"
-          : "Add New Address"}
+        {editingAddress ? "Edit Address" : "Add New Address"}{" "}
       </h2>
-
-      {/* Name */}
       <div>
-        <label className="text-sm">
-          Name
-        </label>
+        <label className="text-sm">Name</label>
 
         <input
           name="name"
           value={formData.name}
           onChange={handleChange}
-          className="w-full border rounded-lg p-3 mt-1"
+          className="mt-1 w-full rounded-lg border p-3"
           placeholder="Enter your name"
           required
         />
       </div>
-
-      {/* Phone */}
       <div>
-        <label className="text-sm">
-          Phone
-        </label>
+        <label className="text-sm">Phone</label>
 
         <input
           name="phone"
           value={formData.phone}
           onChange={handleChange}
-          className="w-full border rounded-lg p-3 mt-1"
+          className="mt-1 w-full rounded-lg border p-3"
           placeholder="Enter phone number"
+          inputMode="numeric"
           required
         />
       </div>
-
-      {/* Address */}
       <div>
-        <label className="text-sm">
-          Address
-        </label>
+        <label className="text-sm">Address</label>
 
         <textarea
           name="address"
           value={formData.address}
           onChange={handleChange}
-          className="w-full border rounded-lg p-3 mt-1"
+          className="mt-1 w-full rounded-lg border p-3"
           placeholder="House / Street / Area"
           rows="3"
           required
         />
       </div>
-
-      {/* City + State */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div>
-          <label className="text-sm">
-            City
-          </label>
+          <label className="text-sm">City</label>
 
           <input
             name="city"
             value={formData.city}
             onChange={handleChange}
-            className="w-full border rounded-lg p-3 mt-1"
+            className="mt-1 w-full rounded-lg border p-3"
             placeholder="City"
             required
           />
         </div>
 
         <div>
-          <label className="text-sm">
-            State
-          </label>
+          <label className="text-sm">State</label>
 
           <input
             name="state"
             value={formData.state}
             onChange={handleChange}
-            className="w-full border rounded-lg p-3 mt-1"
+            className="mt-1 w-full rounded-lg border p-3"
             placeholder="State"
             required
           />
         </div>
-
       </div>
-
-      {/* Pincode */}
       <div>
-        <label className="text-sm">
-          Pincode
-        </label>
+        <label className="text-sm">Pincode</label>
 
         <input
           name="pincode"
           value={formData.pincode}
           onChange={handleChange}
-          className="w-full border rounded-lg p-3 mt-1"
+          className="mt-1 w-full rounded-lg border p-3"
           placeholder="Pincode"
+          inputMode="numeric"
           required
         />
       </div>
-
-      {/* Buttons */}
       <div className="flex gap-3 pt-2">
-
         <button
           type="button"
           onClick={onCancel}
-          className="border rounded-lg px-5 py-3"
+          disabled={loading}
+          className="rounded-lg border px-5 py-3 disabled:opacity-50"
         >
           Cancel
         </button>
 
         <button
           type="submit"
-          className="bg-black text-white rounded-lg px-5 py-3"
+          disabled={loading || !user?.id}
+          className="rounded-lg bg-black px-5 py-3 text-white disabled:cursor-not-allowed disabled:opacity-50"
         >
-          {editingAddress
-            ? "Update Address"
-            : "Save Address"}
+          {loading
+            ? "Saving..."
+            : editingAddress
+              ? "Update Address"
+              : "Save Address"}
         </button>
-
       </div>
-
     </form>
   );
 }

@@ -4,9 +4,7 @@ import { setPaymentMethod } from "../checkoutSlice";
 export default function PaymentMethod() {
   const dispatch = useDispatch();
 
-  const paymentMethod = useSelector(
-    (state) => state.checkout.paymentMethod
-  );
+  const paymentMethod = useSelector((state) => state.checkout.paymentMethod);
 
   const methods = [
     {
@@ -23,40 +21,41 @@ export default function PaymentMethod() {
     },
   ];
 
+  const handlePaymentChange = (method) => {
+    dispatch(setPaymentMethod(method));
+  };
+
   return (
     <section className="mt-10">
+      {" "}
+      <h2 className="mb-5 text-xl font-semibold">Payment Method </h2>
+      <div className="overflow-hidden rounded-xl border">
+        {methods.map((method) => {
+          const selected = paymentMethod === method.id;
 
-      <h2 className="text-xl font-semibold mb-5">
-        Payment Method
-      </h2>
+          return (
+            <label
+              key={method.id}
+              className={`flex cursor-pointer items-center gap-3 border-b p-4 last:border-b-0 transition ${
+                selected ? "bg-gray-50" : "hover:bg-gray-50"
+              }`}
+            >
+              <input
+                type="radio"
+                name="payment"
+                value={method.id}
+                checked={selected}
+                onChange={() => handlePaymentChange(method.id)}
+                className="accent-black"
+              />
 
-      <div className="border rounded-xl overflow-hidden">
-
-        {methods.map((method) => (
-          <label
-            key={method.id}
-            className="flex items-center gap-3 p-4 border-b last:border-b-0 cursor-pointer"
-          >
-
-            <input
-              type="radio"
-              name="payment"
-              value={method.id}
-              checked={paymentMethod === method.id}
-              onChange={(e) =>
-                dispatch(
-                  setPaymentMethod(e.target.value)
-                )
-              }
-            />
-
-            <span>{method.label}</span>
-
-          </label>
-        ))}
-
+              <span className={selected ? "font-medium" : "text-gray-700"}>
+                {method.label}
+              </span>
+            </label>
+          );
+        })}
       </div>
-
     </section>
   );
 }
