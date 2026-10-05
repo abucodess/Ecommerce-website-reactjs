@@ -866,5 +866,11 @@
     }
   ],
   "reviews": [],
-  "$schema": "./node_modules/json-server/schema.json"
+  "admin" : [
+    {
+      "id": "admin-1",
+      "email": "admin123@gmail.com",
+      "password": "assassin8593"
+    }
+  ]
 }
