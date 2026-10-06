@@ -1,16 +1,12 @@
 {
-  "name": "backend",
-  "version": "1.0.0",
-  "description": "Shoe ecommerce backend",
-  "main": "index.js",
-  "scripts": {
-    "start": "npx json-server db.json --host 0.0.0.0 --port $PORT"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
     "json-server": "^1.0.0-beta.15"
-  }
+  },
+  "scripts": {
+  "dev": "vite",
+  "build": "vite build",
+  "preview": "vite preview",
+  "start:server": "json-server --host 0.0.0.0 --port $PORT db.json"
 }
+}
+  
