@@ -2,6 +2,6 @@
 import axios from "axios";
 
 let api = axios.create({
-    baseURL : "https://ecommerce-api-04ti.onrender.com/"
+    baseURL : "https://ecommerce-website-reactjs-6.onrender.com/"
 })
 export default api
