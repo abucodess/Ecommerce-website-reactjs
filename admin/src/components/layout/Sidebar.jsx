@@ -6,6 +6,9 @@ import {
   Boxes,
   ShoppingCart,
   Users,
+  MessageSquare,
+  Ticket,
+  Image as ImageIcon,
   BarChart3,
   Settings,
   LogOut,
@@ -37,6 +40,21 @@ function Sidebar() {
       name: "Customers",
       path: "/customers",
       icon: Users,
+    },
+    {
+      name: "Reviews",
+      path: "/reviews",
+      icon: MessageSquare,
+    },
+    {
+      name: "Coupons",
+      path: "/coupons",
+      icon: Ticket,
+    },
+    {
+      name: "Banners",
+      path: "/banners",
+      icon: ImageIcon,
     },
     {
       name: "Analytics",

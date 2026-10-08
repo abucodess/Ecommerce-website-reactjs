@@ -40,7 +40,7 @@ export const placeOrder = createAsyncThunk(
 
       const orderItems = cartItems.map((cartItem) => {
         const product = products.find(
-          (product) => Number(product.id) === Number(cartItem.productId),
+          (product) => String(product.id) === String(cartItem.productId),
         );
 
         if (!product) {

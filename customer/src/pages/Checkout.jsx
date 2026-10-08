@@ -4,7 +4,6 @@ import PaymentMethod from "@/features/checkout/components/PaymentMethod";
 import { buyNow, fetchCart } from "@/features/cart/cartSlice";
 import { placeOrder } from "@/features/orders/orderSlice";
 import { fetchproducts } from "@/features/products/productSlice";
-import { useUser } from "@clerk/clerk-react";
 import { ArrowLeft } from "lucide-react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,7 +12,9 @@ import { useNavigate } from "react-router-dom";
 export default function Checkout() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { user } = useUser();
+ const { user, isAuthenticated } = useSelector(
+    (state) => state.auth
+  );
 
   const { addresses, selectedAddressId, paymentMethod } = useSelector(
     (state) => state.checkout,

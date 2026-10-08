@@ -1,6 +1,4 @@
-
 import { useEffect } from "react";
-import { useUser } from "@clerk/clerk-react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Navbar from "@/components/layout/Navbar";
@@ -14,7 +12,10 @@ import { fetchCart } from "@/features/cart/cartSlice";
 
 export default function Cart() {
   const dispatch = useDispatch();
-  const { user } = useUser();
+
+  const { user, isAuthenticated } = useSelector(
+    (state) => state.auth
+  );
 
   const {
     items,
@@ -23,10 +24,10 @@ export default function Cart() {
   } = useSelector((state) => state.cart);
 
   useEffect(() => {
-    if (!user?.id) return;
+    if (!isAuthenticated || !user?.id) return;
 
     dispatch(fetchCart(user.id));
-  }, [user?.id, dispatch]);
+  }, [isAuthenticated, user?.id, dispatch]);
 
   const isEmpty = items.length === 0;
 

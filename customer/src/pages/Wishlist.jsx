@@ -18,7 +18,7 @@ export default function Wishlist() {
   const wishlistIds = new Set(wishlistItems);
 
   const wishlistProducts = products.filter((product) =>
-    wishlistIds.has(Number(product.id))
+    wishlistIds.has(String(product.id))
   );
 
   const loading = wishlistLoading || productsLoading;

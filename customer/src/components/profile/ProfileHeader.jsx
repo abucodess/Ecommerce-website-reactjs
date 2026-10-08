@@ -1,16 +1,14 @@
-import { useUser } from "@clerk/clerk-react";
 import { Link } from "react-router-dom";
 import { Mail, Pencil, User } from "lucide-react";
+import { useSelector } from "react-redux";
 
 export default function ProfileHeader() {
-  const { user } = useUser();
-
+let {user,isAuthenticated} = useSelector(state=>state.auth)
   if (!user) return null;
 
   return (
     <section className="mb-8 rounded-2xl border border-gray-200 p-6 sm:p-8">
       <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
-
         <div className="size-20 shrink-0 overflow-hidden rounded-full bg-gray-100">
           {user.imageUrl ? (
             <img
@@ -24,15 +22,12 @@ export default function ProfileHeader() {
             </div>
           )}
         </div>
-
         <div className="min-w-0 flex-1">
           <h2 className="text-xl font-semibold">
             {user.fullName || "User"}
           </h2>
-
           <div className="mt-2 flex items-center gap-2 text-sm text-gray-500">
             <Mail size={15} />
-
             <span className="truncate">
               {user.primaryEmailAddress?.emailAddress}
             </span>

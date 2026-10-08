@@ -1,6 +1,5 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useUser } from "@clerk/clerk-react";
+import { useDispatch, useSelector } from "react-redux";
 import { Slide, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./styles/toast.css";
@@ -11,18 +10,22 @@ import { fetchWishlist } from "./features/wishlist/wishlistSlice";
 
 function App() {
   const dispatch = useDispatch();
-  const { user } = useUser();
+
+  const { user, isAuthenticated } = useSelector(
+    (state) => state.auth
+  );
 
   useEffect(() => {
-    if (!user?.id) return;
     dispatch(fetchproducts());
-    dispatch(fetchWishlist(user.id));
-  }, [user?.id, dispatch]);
+
+    if (isAuthenticated && user?.id) {
+      dispatch(fetchWishlist(user.id));
+    }
+  }, [dispatch, isAuthenticated, user?.id]);
 
   return (
     <>
       <AppRoutes />
-
       <ToastContainer
         position="top-right"
         autoClose={2400}

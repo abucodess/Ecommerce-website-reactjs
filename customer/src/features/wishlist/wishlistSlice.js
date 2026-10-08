@@ -40,13 +40,13 @@ export const addWishlist = createAsyncThunk(
 
       const wishlist = response.data[0];
       if (wishlist) {
-        if (wishlist.products.includes(Number(productId))) {
+        if (wishlist.products.includes(String(productId))) {
           return wishlist;
         }
 
         const updatedProducts = [
           ...wishlist.products,
-          Number(productId),
+          String(productId),
         ];
 
         const updateResponse = await api.patch(
@@ -61,7 +61,7 @@ export const addWishlist = createAsyncThunk(
 
       const createResponse = await api.post("wishlists", {
         userId,
-        products: [Number(productId)],
+        products: [String(productId)],
       });
 
       return createResponse.data;
@@ -80,7 +80,7 @@ export const removeWishlist = createAsyncThunk(
       const wishlist = response.data;
 
       const updatedProducts = wishlist.products.filter(
-        (id) => Number(id) !== Number(productId)
+        (id) => String(id) !== String(productId)
       );
 
       const updateResponse = await api.patch(

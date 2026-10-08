@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import {
   persistStore,
   persistReducer,
@@ -10,10 +10,10 @@ import cartReducer from "@/features/cart/cartSlice";
 import wishlistReducer from "@/features/wishlist/wishlistSlice";
 import checkoutreducer from '@/features/checkout/checkoutSlice'
 import orderreducer from '@/features/orders/orderSlice'
-
+import authreducer from "@/features/auth/authslice"
 const persistConfig = {
   key: "cart",
-  storage,
+  storage
 };
 
 const persistedproductreducer = persistReducer(
@@ -27,7 +27,8 @@ const store = configureStore({
     cart: cartReducer,
     wishlist: wishlistReducer,
     checkout : checkoutreducer,
-    orders : orderreducer
+    orders : orderreducer,
+    auth : authreducer
   },
 
   middleware: (getDefaultMiddleware) =>

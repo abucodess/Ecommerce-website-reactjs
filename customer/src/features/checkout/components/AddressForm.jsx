@@ -15,7 +15,9 @@ const emptyAddress = {
 
 export default function AddressForm({ editingAddress, onCancel }) {
   const dispatch = useDispatch();
-  const { user } = useUser();
+ const { user, isAuthenticated } = useSelector(
+    (state) => state.auth
+  );
 
   const loading = useSelector((state) => state.checkout.loading);
 

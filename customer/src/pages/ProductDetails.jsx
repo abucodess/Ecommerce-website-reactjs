@@ -14,7 +14,6 @@ import {
   Zap,
 } from "lucide-react";
 
-import { useUser } from "@clerk/clerk-react";
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -25,7 +24,9 @@ export default function ProductDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { user } = useUser();
+ const { user, isAuthenticated } = useSelector(
+    (state) => state.auth
+  );
 
   const [selectedSize, setSelectedSize] = useState(null);
   const [prevId, setPrevId] = useState(id);
@@ -59,13 +60,13 @@ export default function ProductDetails() {
   }, [id]);
 
   const product = products.find(
-    (x) => Number(x.id) === Number(id)
+    (x) => String(x.id) === String(id)
   );
 
   const similarProducts = useMemo(() => {
     if (!product || !products?.length) return [];
     return products
-      .filter((p) => Number(p.id) !== Number(id))
+      .filter((p) => String(p.id) !== String(id))
       .sort((a, b) => {
         const aScore =
           (a.category === product.category ? 2 : 0) +
@@ -102,7 +103,7 @@ export default function ProductDetails() {
     );
   }
 
-  const isWishlisted = items.includes(Number(product.id));
+  const isWishlisted = items.includes(String(product.id));
 
   const handleAddToCart = () => {
     if (!selectedSize) {
@@ -136,7 +137,7 @@ export default function ProductDetails() {
       sessionStorage.setItem(
         "pendingBuyNow",
         JSON.stringify({
-          productId: Number(product.id),
+          productId: String(product.id),
           size: selectedSize,
         })
       );
@@ -264,20 +265,28 @@ export default function ProductDetails() {
               </div>
 
               <div className="mt-3 grid grid-cols-3 gap-2.5 sm:grid-cols-6 sm:gap-3">
-                {product.sizes.map((size) => (
+                {product.sizes.map((s) => {
+                  const sizeValue = typeof s === 'object' && s !== null ? s.size : s;
+                  const stock = typeof s === 'object' && s !== null ? s.stock : null;
+                  const isOutOfStock = stock === 0;
+
+                  return (
                   <button
-                    key={size}
+                    key={sizeValue}
                     type="button"
-                    onClick={() => setSelectedSize(size)}
+                    disabled={isOutOfStock}
+                    onClick={() => setSelectedSize(sizeValue)}
                     className={`rounded-xl border py-3 text-sm font-medium transition ${
-                      selectedSize === size
+                      selectedSize === sizeValue
                         ? "border-black bg-black text-white shadow-sm"
+                        : isOutOfStock
+                        ? "border-gray-100 bg-gray-50 text-gray-400 cursor-not-allowed"
                         : "border-gray-200 bg-white text-gray-900 hover:border-black"
                     }`}
                   >
-                    {size}
+                    {sizeValue}
                   </button>
-                ))}
+                )})}
               </div>
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-stretch">

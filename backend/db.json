@@ -325,7 +325,7 @@
   "addresses": [],
   "orders": [],
   "reviews": [],
-  "users" : [
+  "users": [
     {
       "id": "admin-1",
       "name": "Admin",
@@ -335,5 +335,46 @@
       "isActive": true,
       "createdAt": "2026-10-07T00:00:00.000Z"
     }
-  ]
+  ],
+  "brands": [
+    {
+      "id": "1",
+      "name": "Nike",
+      "description": "Sportswear and athletic shoes"
+    },
+    {
+      "id": "2",
+      "name": "Adidas",
+      "description": "Sportswear and sneakers"
+    },
+    {
+      "id": "3",
+      "name": "Puma",
+      "description": "Athletic and casual footwear"
+    },
+    {
+      "id": "4",
+      "name": "New Balance",
+      "description": "Comfortable running and lifestyle shoes"
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "Lifestyle",
+      "description": "Casual everyday shoes"
+    },
+    {
+      "id": "2",
+      "name": "Running",
+      "description": "Performance running shoes"
+    },
+    {
+      "id": "3",
+      "name": "Basketball",
+      "description": "Basketball sneakers"
+    }
+  ],
+  "coupons": [],
+  "banners": []
 }

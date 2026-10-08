@@ -1,9 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import api from "../../services/api";
 
+const savedAdmin = localStorage.getItem("solexAdminUser");
+const parsedAdmin = savedAdmin ? JSON.parse(savedAdmin) : null;
+
 const initialState = {
-  user: null,
-  isAuthenticated: false,
+  user: parsedAdmin,
+  isAuthenticated: !!parsedAdmin,
   isLoading: false,
   error: null,
 };
@@ -12,7 +15,7 @@ export const loginAdmin = createAsyncThunk(
   async ({ email, password }, { rejectWithValue }) => {
     try {
       const response = await api.get(
-        `admin?email=${email}`,
+        `users?email=${email}`,
       );
       console.log(response)
 
@@ -24,14 +27,16 @@ export const loginAdmin = createAsyncThunk(
       if(admin.password!==password){
         return rejectWithValue("wrong password")
       }
-
+      console.log(admin.role)
+      if(admin.role !== "admin") {
+        return rejectWithValue("user is not an admin")
+      }
       return response.data[0];
     } catch (error) {
       return rejectWithValue(error);
     }
   },
 );
-
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -40,6 +45,7 @@ const authSlice = createSlice({
       state.user = null;
       state.isAuthenticated = false;
       state.error = null;
+      localStorage.removeItem("solexAdminUser");
     },
 
     clearError: (state) => {
@@ -55,6 +61,7 @@ const authSlice = createSlice({
         state.user = action.payload;
         state.isAuthenticated = true;
         state.error = null;
+        localStorage.setItem("solexAdminUser", JSON.stringify(action.payload));
       })
       .addCase(loginAdmin.rejected,(state,action)=>{
         state.isLoading = false;

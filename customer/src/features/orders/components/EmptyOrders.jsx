@@ -1,3 +1,5 @@
+import { ShoppingBag } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function EmptyOrders() {
   return (
@@ -13,7 +15,7 @@ export default function EmptyOrders() {
         appear here.
       </p>
       <Link
-        to="/shop"
+        to="/products"
         className="mt-6 rounded-xl bg-black px-6 py-3 text-sm font-medium text-white transition hover:bg-gray-800"
       >
         Start Shopping

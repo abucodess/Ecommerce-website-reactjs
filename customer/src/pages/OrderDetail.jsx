@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { useUser } from "@clerk/clerk-react";
 import { ArrowLeft, Check, AlertTriangle } from "lucide-react";
 
 import api from "@/services/api";
@@ -8,10 +7,14 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Modal from "@/components/common/Modal";
 import OrderTimeline from "@/features/orders/components/OrderTimeline";
+import { useSelector } from "react-redux";
 
 function OrderDetails() {
   const { orderId } = useParams();
-  const { user } = useUser();
+ const { user, isAuthenticated } = useSelector(
+    (state) => state.auth
+  );
+
 
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);

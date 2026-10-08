@@ -9,7 +9,10 @@ import { fetchAddresses, selectAddress } from "../checkoutSlice";
 
 export default function AddressSection() {
   const dispatch = useDispatch();
-  const { user } = useUser();
+  const { user, isAuthenticated } = useSelector(
+    (state) => state.auth
+  );
+
 
   const {
     addresses,

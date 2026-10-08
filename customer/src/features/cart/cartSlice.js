@@ -57,7 +57,7 @@ export const addToCart = createAsyncThunk(
           userId,
           items: [
             {
-              productId: Number(product.id),
+              productId: String(product.id),
               size,
               quantity: 1,
             },
@@ -69,7 +69,7 @@ export const addToCart = createAsyncThunk(
 
       const existingItem = cart.items.find(
         (item) =>
-          Number(item.productId) === Number(product.id) &&
+          String(item.productId) === String(product.id) &&
           Number(item.size) === Number(size)
       );
 
@@ -77,7 +77,7 @@ export const addToCart = createAsyncThunk(
 
       if (existingItem) {
         updatedItems = cart.items.map((item) =>
-          Number(item.productId) === Number(product.id) &&
+          String(item.productId) === String(product.id) &&
           Number(item.size) === Number(size)
             ? {
                 ...item,
@@ -89,7 +89,7 @@ export const addToCart = createAsyncThunk(
         updatedItems = [
           ...cart.items,
           {
-            productId: Number(product.id),
+            productId: String(product.id),
             size,
             quantity: 1,
           },
@@ -121,7 +121,7 @@ export const buyNow = createAsyncThunk(
       let cart = response.data[0];
 
       const newItem = {
-        productId: Number(product.id),
+        productId: String(product.id),
         size,
         quantity: 1,
       };
@@ -173,7 +173,7 @@ export const increaseQuantity = createAsyncThunk(
       const cart = response.data;
 
       const updatedItems = cart.items.map((item) =>
-        Number(item.productId) === Number(productId) &&
+        String(item.productId) === String(productId) &&
         Number(item.size) === Number(size)
           ? {
               ...item,
@@ -213,7 +213,7 @@ export const decreaseQuantity = createAsyncThunk(
       const cart = response.data;
 
       const updatedItems = cart.items.map((item) =>
-        Number(item.productId) === Number(productId) &&
+        String(item.productId) === String(productId) &&
         Number(item.size) === Number(size) &&
         item.quantity > 1
           ? {
@@ -256,7 +256,7 @@ export const removeFromCart = createAsyncThunk(
       const updatedItems = cart.items.filter(
         (item) =>
           !(
-            Number(item.productId) === Number(productId) &&
+            String(item.productId) === String(productId) &&
             Number(item.size) === Number(size)
           )
       );

@@ -1,10 +1,8 @@
-import { SignOutButton } from "@clerk/clerk-react";
 import { Link } from "react-router-dom";
 import {
   Package,
   MapPin,
   Settings,
-  LogOut,
   ChevronRight,
 } from "lucide-react";
 
@@ -32,7 +30,6 @@ const menuItems = [
 export default function ProfileMenu() {
   return (
     <section className="overflow-hidden rounded-2xl border border-gray-200">
-
       {menuItems.map((item) => {
         const Icon = item.icon;
 
@@ -63,28 +60,6 @@ export default function ProfileMenu() {
           </Link>
         );
       })}
-
-      <SignOutButton>
-        <button
-          type="button"
-          className="flex w-full items-center gap-4 px-6 py-5 text-left transition hover:bg-red-50"
-        >
-          <div className="grid size-10 shrink-0 place-items-center rounded-full bg-red-50 text-red-600">
-            <LogOut size={20} />
-          </div>
-
-          <div className="flex-1">
-            <p className="text-sm font-medium text-red-600">
-              Log Out
-            </p>
-
-            <p className="mt-1 text-xs text-gray-500">
-              Sign out of your account
-            </p>
-          </div>
-        </button>
-      </SignOutButton>
-
     </section>
   );
 }

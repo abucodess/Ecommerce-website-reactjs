@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useUser } from "@clerk/clerk-react";
+
 import {
   Search,
   Heart,
@@ -44,7 +44,14 @@ export default function Navbar() {
 
   const { pathname } = useLocation();
 
-  const { user, isSignedIn } = useUser();
+  // Redux authentication
+  const { user, isAuthenticated } = useSelector(
+    (state) => state.auth
+  );
+  console.log("AUTH:", {
+  user,
+  isAuthenticated,
+});
 
   const cartItems = useSelector(
     (state) => state.cart.items
@@ -59,10 +66,12 @@ export default function Navbar() {
     0
   );
 
+  // Close mobile menu when route changes
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
 
+  // Close menu when clicking outside / pressing Escape
   useEffect(() => {
     if (!open) return;
 
@@ -101,6 +110,10 @@ export default function Navbar() {
     };
   }, [open]);
 
+  // Get user's first letter
+  const userInitial =
+    user?.name?.charAt(0)?.toUpperCase() || "U";
+
   return (
     <nav
       ref={navRef}
@@ -108,6 +121,7 @@ export default function Navbar() {
     >
       <div className="flex items-center rounded-2xl border border-gray-800 bg-black px-3 py-3 shadow-md sm:px-6">
 
+        {/* Mobile Logo */}
         <button
           type="button"
           onClick={() => setOpen(!open)}
@@ -124,6 +138,7 @@ export default function Navbar() {
           />
         </button>
 
+        {/* Desktop Logo */}
         <NavLink
           to="/"
           className="hidden shrink-0 sm:block"
@@ -135,6 +150,7 @@ export default function Navbar() {
           />
         </NavLink>
 
+        {/* Navigation */}
         <div
           className={`grid min-w-0 transition-[grid-template-columns] duration-500 ease-out motion-reduce:transition-none sm:flex-1 sm:grid-cols-[1fr] ${
             open
@@ -151,6 +167,7 @@ export default function Navbar() {
               }`}
             >
 
+              {/* Main Links */}
               <div className="flex items-center gap-5 text-sm sm:mx-auto sm:gap-8 sm:text-base">
                 {links.map((link) => (
                   <NavLink
@@ -170,6 +187,7 @@ export default function Navbar() {
                 ))}
               </div>
 
+              {/* Actions */}
               <div className="flex shrink-0 items-center gap-4">
 
                 {actions.map(
@@ -188,6 +206,7 @@ export default function Navbar() {
                     >
                       <Icon size={20} />
 
+                      {/* Wishlist Count */}
                       {label === "Wishlist" &&
                         wishlistItems.length > 0 && (
                           <span className="absolute -right-2.5 -top-2.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold leading-none text-white">
@@ -195,6 +214,7 @@ export default function Navbar() {
                           </span>
                         )}
 
+                      {/* Cart Count */}
                       {label === "Cart" &&
                         cartCount > 0 && (
                           <span className="absolute -right-2.5 -top-2.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-white px-1 text-[10px] font-bold leading-none text-black">
@@ -205,11 +225,12 @@ export default function Navbar() {
                   )
                 )}
 
-
-                {isSignedIn ? (
+                {/* Authentication */}
+                {isAuthenticated ? (
                   <NavLink
                     to="/profile"
                     aria-label="Profile"
+                    title={user?.name || "Profile"}
                     className={({ isActive }) =>
                       `overflow-hidden rounded-full border transition ${
                         isActive
@@ -218,17 +239,9 @@ export default function Navbar() {
                       }`
                     }
                   >
-                    {user?.imageUrl ? (
-                      <img
-                        src={user.imageUrl}
-                        alt="Profile"
-                        className="size-7 object-cover"
-                      />
-                    ) : (
-                      <div className="grid size-7 place-items-center bg-gray-800 text-gray-300">
-                        <User size={16} />
-                      </div>
-                    )}
+                    <div className="grid size-7 place-items-center bg-gray-800 text-sm font-semibold text-white">
+                      {userInitial}
+                    </div>
                   </NavLink>
                 ) : (
                   <NavLink
@@ -238,6 +251,7 @@ export default function Navbar() {
                     Sign In
                   </NavLink>
                 )}
+
               </div>
             </div>
           </div>

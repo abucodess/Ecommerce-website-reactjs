@@ -7,7 +7,7 @@ export default function OrderSummary({ onPlaceOrder }) {
   const items = cartItems
     .map((cartItem) => {
       const product = products.find(
-        (product) => Number(product.id) === Number(cartItem.productId),
+        (product) => String(product.id) === String(cartItem.productId),
       );
 
       if (!product) return null;

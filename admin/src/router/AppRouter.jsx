@@ -7,8 +7,11 @@ import Products from "../pages/Products.jsx";
 import Inventory from "../pages/Inventory.jsx";
 import Orders from "../pages/Orders.jsx";
 import Customers from "../pages/Customers.jsx";
+import Reviews from "../pages/Reviews.jsx";
+import Coupons from "../pages/Coupons.jsx";
+import Banners from "../pages/Banners.jsx";
 import Analytics from "../pages/Analytics.jsx";
-import Settings from "../pages/Settings.jsx"; 
+import Settings from "../pages/Settings.jsx";
 
 
 import AdminLayout from "../components/layout/AdminLayout";
@@ -28,6 +31,9 @@ function Router() {
           <Route path="/inventory" element={<Inventory />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/customers" element={<Customers />} />
+          <Route path="/reviews" element={<Reviews />} />
+          <Route path="/coupons" element={<Coupons />} />
+          <Route path="/banners" element={<Banners />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/settings" element={<Settings />} />
         </Route>
