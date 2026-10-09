@@ -9,12 +9,30 @@
       "image": "/images/products/img1 (1).jpg",
       "description": "Classic Nike lifestyle sneakers with a comfortable cushioned sole.",
       "sizes": [
-        6,
-        7,
-        8,
-        9,
-        10,
-        11
+        {
+          "size": "6",
+          "stock": 15
+        },
+        {
+          "size": "7",
+          "stock": 15
+        },
+        {
+          "size": "8",
+          "stock": 15
+        },
+        {
+          "size": "9",
+          "stock": 15
+        },
+        {
+          "size": "10",
+          "stock": 15
+        },
+        {
+          "size": "11",
+          "stock": 15
+        }
       ],
       "rating": 4.7,
       "reviews": 124,
@@ -30,12 +48,30 @@
       "image": "/images/products/img2 (1).jpg",
       "description": "Iconic Nike sneakers with a clean design and everyday comfort.",
       "sizes": [
-        6,
-        7,
-        8,
-        9,
-        10,
-        11
+        {
+          "size": "6",
+          "stock": 15
+        },
+        {
+          "size": "7",
+          "stock": 15
+        },
+        {
+          "size": "8",
+          "stock": 15
+        },
+        {
+          "size": "9",
+          "stock": 15
+        },
+        {
+          "size": "10",
+          "stock": 15
+        },
+        {
+          "size": "11",
+          "stock": 15
+        }
       ],
       "rating": 4.8,
       "reviews": 256,
@@ -51,12 +87,30 @@
       "image": "/images/products/img3 (1).jpg",
       "description": "Retro-inspired Nike sneakers designed for everyday streetwear.",
       "sizes": [
-        6,
-        7,
-        8,
-        9,
-        10,
-        11
+        {
+          "size": "6",
+          "stock": 15
+        },
+        {
+          "size": "7",
+          "stock": 15
+        },
+        {
+          "size": "8",
+          "stock": 15
+        },
+        {
+          "size": "9",
+          "stock": 15
+        },
+        {
+          "size": "10",
+          "stock": 15
+        },
+        {
+          "size": "11",
+          "stock": 15
+        }
       ],
       "rating": 4.6,
       "reviews": 189,
@@ -72,13 +126,34 @@
       "image": "/images/products/img4 (1).jpg",
       "description": "Low-profile Jordan sneakers inspired by the original basketball icon.",
       "sizes": [
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12
+        {
+          "size": "6",
+          "stock": 15
+        },
+        {
+          "size": "7",
+          "stock": 15
+        },
+        {
+          "size": "8",
+          "stock": 15
+        },
+        {
+          "size": "9",
+          "stock": 15
+        },
+        {
+          "size": "10",
+          "stock": 15
+        },
+        {
+          "size": "11",
+          "stock": 15
+        },
+        {
+          "size": "12",
+          "stock": 15
+        }
       ],
       "rating": 4.8,
       "reviews": 312,
@@ -94,13 +169,34 @@
       "image": "/images/products/img5 (1).jpg",
       "description": "Responsive running shoes built for everyday training and long runs.",
       "sizes": [
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12
+        {
+          "size": "6",
+          "stock": 15
+        },
+        {
+          "size": "7",
+          "stock": 15
+        },
+        {
+          "size": "8",
+          "stock": 15
+        },
+        {
+          "size": "9",
+          "stock": 15
+        },
+        {
+          "size": "10",
+          "stock": 15
+        },
+        {
+          "size": "11",
+          "stock": 15
+        },
+        {
+          "size": "12",
+          "stock": 15
+        }
       ],
       "rating": 4.7,
       "reviews": 98,
@@ -116,12 +212,30 @@
       "image": "/images/products/img6 (1).jpg",
       "description": "Timeless Adidas sneakers featuring the classic Samba silhouette.",
       "sizes": [
-        6,
-        7,
-        8,
-        9,
-        10,
-        11
+        {
+          "size": "6",
+          "stock": 15
+        },
+        {
+          "size": "7",
+          "stock": 15
+        },
+        {
+          "size": "8",
+          "stock": 15
+        },
+        {
+          "size": "9",
+          "stock": 15
+        },
+        {
+          "size": "10",
+          "stock": 15
+        },
+        {
+          "size": "11",
+          "stock": 15
+        }
       ],
       "rating": 4.9,
       "reviews": 421,
@@ -137,12 +251,30 @@
       "image": "/images/products/img7 (1).jpg",
       "description": "Classic Adidas terrace-inspired sneakers with a retro aesthetic.",
       "sizes": [
-        6,
-        7,
-        8,
-        9,
-        10,
-        11
+        {
+          "size": "6",
+          "stock": 15
+        },
+        {
+          "size": "7",
+          "stock": 15
+        },
+        {
+          "size": "8",
+          "stock": 15
+        },
+        {
+          "size": "9",
+          "stock": 15
+        },
+        {
+          "size": "10",
+          "stock": 15
+        },
+        {
+          "size": "11",
+          "stock": 15
+        }
       ],
       "rating": 4.7,
       "reviews": 176,
@@ -158,12 +290,30 @@
       "image": "/images/products/img8 (1).jpg",
       "description": "Chunky retro sneakers inspired by classic Adidas street style.",
       "sizes": [
-        6,
-        7,
-        8,
-        9,
-        10,
-        11
+        {
+          "size": "6",
+          "stock": 15
+        },
+        {
+          "size": "7",
+          "stock": 15
+        },
+        {
+          "size": "8",
+          "stock": 15
+        },
+        {
+          "size": "9",
+          "stock": 15
+        },
+        {
+          "size": "10",
+          "stock": 15
+        },
+        {
+          "size": "11",
+          "stock": 15
+        }
       ],
       "rating": 4.6,
       "reviews": 143,
@@ -179,13 +329,34 @@
       "image": "/images/products/img9 (1).jpg",
       "description": "High-performance running shoes with responsive cushioning.",
       "sizes": [
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12
+        {
+          "size": "6",
+          "stock": 15
+        },
+        {
+          "size": "7",
+          "stock": 15
+        },
+        {
+          "size": "8",
+          "stock": 15
+        },
+        {
+          "size": "9",
+          "stock": 15
+        },
+        {
+          "size": "10",
+          "stock": 15
+        },
+        {
+          "size": "11",
+          "stock": 15
+        },
+        {
+          "size": "12",
+          "stock": 15
+        }
       ],
       "rating": 4.8,
       "reviews": 231,
@@ -201,12 +372,30 @@
       "image": "/images/products/img10 (1).jpg",
       "description": "Retro basketball-inspired Adidas sneakers with a low-cut profile.",
       "sizes": [
-        6,
-        7,
-        8,
-        9,
-        10,
-        11
+        {
+          "size": "6",
+          "stock": 15
+        },
+        {
+          "size": "7",
+          "stock": 15
+        },
+        {
+          "size": "8",
+          "stock": 15
+        },
+        {
+          "size": "9",
+          "stock": 15
+        },
+        {
+          "size": "10",
+          "stock": 15
+        },
+        {
+          "size": "11",
+          "stock": 15
+        }
       ],
       "rating": 4.5,
       "reviews": 87,
@@ -222,12 +411,30 @@
       "image": "/images/products/img11 (1).jpg",
       "description": "Classic Puma suede sneakers designed for everyday streetwear.",
       "sizes": [
-        6,
-        7,
-        8,
-        9,
-        10,
-        11
+        {
+          "size": "6",
+          "stock": 15
+        },
+        {
+          "size": "7",
+          "stock": 15
+        },
+        {
+          "size": "8",
+          "stock": 15
+        },
+        {
+          "size": "9",
+          "stock": 15
+        },
+        {
+          "size": "10",
+          "stock": 15
+        },
+        {
+          "size": "11",
+          "stock": 15
+        }
       ],
       "rating": 4.6,
       "reviews": 132,
@@ -243,12 +450,30 @@
       "image": "/images/products/img12 (1).jpg",
       "description": "Classic terrace sneakers inspired by Puma's football heritage.",
       "sizes": [
-        6,
-        7,
-        8,
-        9,
-        10,
-        11
+        {
+          "size": "6",
+          "stock": 15
+        },
+        {
+          "size": "7",
+          "stock": 15
+        },
+        {
+          "size": "8",
+          "stock": 15
+        },
+        {
+          "size": "9",
+          "stock": 15
+        },
+        {
+          "size": "10",
+          "stock": 15
+        },
+        {
+          "size": "11",
+          "stock": 15
+        }
       ],
       "rating": 4.7,
       "reviews": 118,
@@ -264,12 +489,30 @@
       "image": "/images/products/img13 (1).jpg",
       "description": "Bold Puma sneakers featuring a modern chunky silhouette.",
       "sizes": [
-        6,
-        7,
-        8,
-        9,
-        10,
-        11
+        {
+          "size": "6",
+          "stock": 15
+        },
+        {
+          "size": "7",
+          "stock": 15
+        },
+        {
+          "size": "8",
+          "stock": 15
+        },
+        {
+          "size": "9",
+          "stock": 15
+        },
+        {
+          "size": "10",
+          "stock": 15
+        },
+        {
+          "size": "11",
+          "stock": 15
+        }
       ],
       "rating": 4.5,
       "reviews": 94,
@@ -285,13 +528,34 @@
       "image": "/images/products/img14 (1).jpg",
       "description": "Performance running shoes built with responsive cushioning and speed in mind.",
       "sizes": [
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12
+        {
+          "size": "6",
+          "stock": 15
+        },
+        {
+          "size": "7",
+          "stock": 15
+        },
+        {
+          "size": "8",
+          "stock": 15
+        },
+        {
+          "size": "9",
+          "stock": 15
+        },
+        {
+          "size": "10",
+          "stock": 15
+        },
+        {
+          "size": "11",
+          "stock": 15
+        },
+        {
+          "size": "12",
+          "stock": 15
+        }
       ],
       "rating": 4.8,
       "reviews": 76,
@@ -307,12 +571,30 @@
       "image": "/images/products/img15 (1).jpg",
       "description": "Clean and versatile Puma sneakers for casual everyday wear.",
       "sizes": [
-        6,
-        7,
-        8,
-        9,
-        10,
-        11
+        {
+          "size": "6",
+          "stock": 15
+        },
+        {
+          "size": "7",
+          "stock": 15
+        },
+        {
+          "size": "8",
+          "stock": 15
+        },
+        {
+          "size": "9",
+          "stock": 15
+        },
+        {
+          "size": "10",
+          "stock": 15
+        },
+        {
+          "size": "11",
+          "stock": 15
+        }
       ],
       "rating": 4.4,
       "reviews": 63,
