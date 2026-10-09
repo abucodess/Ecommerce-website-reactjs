@@ -658,5 +658,28 @@
     }
   ],
   "coupons": [],
-  "banners": []
+  "banners": [
+  {
+    "id": "1",
+    "type": "video",
+    "device": "desktop",
+    "src": "https://res.cloudinary.com/y6pteybf/video/upload/v1791527702/last_1_1.mp4",
+    "eyebrow": "NEW SEASON",
+    "title": "STEP INTO YOUR NEXT",
+    "subtitle": "Premium footwear. Built for every step.",
+    "ctaText": "SHOP NOW",
+    "ctaLink": "/products"
+  },
+  {
+    "id": "2",
+    "type": "video",
+    "device": "mobile",
+    "src": "https://res.cloudinary.com/y6pteybf/video/upload/v1791527771/mobilevideo.mp4",
+    "eyebrow": "NEW SEASON",
+    "title": "STEP INTO YOUR NEXT",
+    "subtitle": "Premium footwear. Built for every step.",
+    "ctaText": "SHOP NOW",
+    "ctaLink": "/products"
+  }
+]
 }
